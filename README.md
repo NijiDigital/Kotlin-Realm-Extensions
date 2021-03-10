@@ -4,7 +4,7 @@
 
 **Simplify your code to its minimum expression with this set of Kotlin extensions for Realm. Forget all boilerplate related with Realm API and perform database operations in one line of code with this lightweight library. Full test coverage.**
 
-## Download for Kotlin 1.3 and Realm 5.9
+## Download for Kotlin 1.4 and Realm 10.3.x
 
 Grab via Gradle:
 
@@ -13,7 +13,7 @@ repositories {
     mavenCentral()
 }
 
-implementation "com.github.vicpinm:krealmextensions:2.5.0"
+implementation "com.github.vicpinm:krealmextensions:2.6.0"
 
 //For Single and Flowable queries:
 implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
@@ -21,6 +21,8 @@ implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 ```
 
 ## Previous versions of Kotlin and Realm
+* Version 2.6.0 for Kotlin 1.4.x and Realm 10.3.x
+* Version 2.5.0 for Kotlin 1.3.x and Realm 5.9.x
 * Version 2.4.0 for Kotlin 1.3.x and Realm 5.8.x
 * Version 2.3.0 for Kotlin 1.3.x and Realm 5.7.x
 * Version 2.2.0 for Kotlin 1.2.x and Realm 5.0.x

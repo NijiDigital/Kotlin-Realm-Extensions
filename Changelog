@@ -1,4 +1,10 @@
 ###2.5.0
+ - Added support for Realm 10.3.1
+ - Update Kotlin to 1.4.30
+ - Update Gradle to 4.3.1
+
+
+###2.5.0
  - Added support for Realm 5.9.0
  
 ###2.4.0
