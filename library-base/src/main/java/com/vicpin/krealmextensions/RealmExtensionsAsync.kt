@@ -29,7 +29,7 @@ internal fun <T : RealmModel> queryFirstAsync(callback: (T?) -> Unit, javaClass:
             RealmObject.removeAllChangeListeners(result)
             realm.close()
             if (isRealmThread()) {
-                Looper.myLooper().thread?.interrupt()
+                Looper.myLooper()?.thread?.interrupt()
             }
         })
     }
@@ -70,7 +70,7 @@ internal fun <T : RealmModel> queryAllAsync(callback: (List<T>) -> Unit, javaCla
             result.removeAllChangeListeners()
             realm.close()
             if (isRealmThread()) {
-                Looper.myLooper().thread?.interrupt()
+                Looper.myLooper()?.thread?.interrupt()
             }
         }
     }
@@ -96,7 +96,7 @@ internal fun <T : RealmModel> queryAsync(query: Query<T>, callback: (List<T>) ->
             result.removeAllChangeListeners()
             realm.close()
             if (isRealmThread()) {
-                Looper.myLooper().thread?.interrupt()
+                Looper.myLooper()?.thread?.interrupt()
             }
         }
     }
@@ -106,6 +106,6 @@ fun onLooperThread(block: () -> Unit) {
     if (Looper.myLooper() != null) {
         block()
     } else {
-        Handler(getLooper()).post(block)
+        getLooper()?.let { Handler(it).post(block) }
     }
 }

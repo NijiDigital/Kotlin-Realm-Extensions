@@ -49,7 +49,7 @@ private fun <T : RealmModel> T.flowableQuery(fieldName: List<String>? = null, or
 @PublishedApi internal inline fun <reified T : RealmModel> flowableQuery(fieldName: List<String>? = null, order: List<Sort>? = null, managed: Boolean = false, noinline query: Query<T>? = null) = performFlowableQuery(fieldName, order, managed, query, T::class.java)
 
 @PublishedApi internal fun <T : RealmModel> performFlowableQuery(fieldName: List<String>? = null, order: List<Sort>? = null, managed: Boolean = false, query: Query<T>? = null, javaClass: Class<T>): Flowable<List<T>> {
-    return prepareObservableQuery(javaClass, { realm, subscriber ->
+    return prepareObservableQuery(javaClass) { realm, subscriber ->
         val realmQuery = realm.where(javaClass)
         query?.invoke(realmQuery)
 
@@ -65,7 +65,7 @@ private fun <T : RealmModel> T.flowableQuery(fieldName: List<String>? = null, or
                 .subscribe({
                     subscriber.onNext(it)
                 }, { subscriber.onError(it) })
-    })
+    }
 }
 
 private inline fun <D : RealmModel, T : Any> prepareObservableQuery(clazz: Class<D>, crossinline closure: (Realm, FlowableEmitter<in T>) -> Disposable): Flowable<T> {
