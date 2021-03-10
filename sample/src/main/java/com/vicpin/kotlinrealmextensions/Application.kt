@@ -1,5 +1,7 @@
 package com.vicpin.kotlinrealmextensions
 
+import com.vicpin.kotlinrealmextensions.model.Item
+import com.vicpin.kotlinrealmextensions.model.User
 import com.vicpin.kotlinrealmextensions.model.UserModule
 import com.vicpin.krealmextensions.RealmConfigStore
 import io.realm.Realm
@@ -15,9 +17,15 @@ class Application : android.app.Application() {
         super.onCreate()
 
         Realm.init(this)
-        val userAddressConfig = RealmConfiguration.Builder().name("user-db").schemaVersion(1).deleteRealmIfMigrationNeeded().build()
+        val userAddressConfig = RealmConfiguration.Builder()
+                .name("user-db")
+                .schemaVersion(1)
+                .deleteRealmIfMigrationNeeded()
+                .allowWritesOnUiThread(true)
+                .build()
+
         // clear previous data for fresh start
-        Realm.deleteRealm(Realm.getDefaultConfiguration())
+        Realm.getDefaultConfiguration()?.let { Realm.deleteRealm(it) }
         Realm.deleteRealm(userAddressConfig)
 
         //Optional: if you want to specify your own realm configuration, you have two ways:
@@ -26,7 +34,7 @@ class Application : android.app.Application() {
         RealmConfigStore.initModule(UserModule::class.java, userAddressConfig)
 
         //2. You can specify any configuration per model with:
-        //RealmConfigStore.init(User::class.java, userAddressConfig)
-        //RealmConfigStore.init(Address::class.java, userAddressConfig)
+//        RealmConfigStore.init(User::class.java, userAddressConfig)
+        RealmConfigStore.init(Item::class.java, userAddressConfig)
     }
 }

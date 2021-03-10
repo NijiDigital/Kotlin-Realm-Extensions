@@ -4,8 +4,8 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.vicpin.kotlinrealmextensions.R
 import com.vicpin.kotlinrealmextensions.extensions.isMainThread
 import com.vicpin.kotlinrealmextensions.extensions.wait
